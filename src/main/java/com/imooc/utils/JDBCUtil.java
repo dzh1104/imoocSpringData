@@ -1,4 +1,4 @@
-package com.imooc.util;
+package com.imooc.utils;
 
 import java.io.InputStream;
 import java.sql.*;
