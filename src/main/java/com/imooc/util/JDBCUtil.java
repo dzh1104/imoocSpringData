@@ -1,10 +1,10 @@
 package com.imooc.util;
 
 import java.io.InputStream;
-import java.sql.Connection;
-// 并不是导入这个 import java.mysql.jdbc.Connection
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.Properties;
+
+// 并不是导入这个 import java.mysql.jdbc.Connection，而是导入java.sql.Connection
 
 /**
  * JDBC工具类
@@ -48,6 +48,38 @@ public class JDBCUtil {
         Connection connection = DriverManager.getConnection(url, user, password);
 
         return connection;
+    }
+
+    /**
+     * 释放DB相关的资源
+     * @param resultSet
+     * @param statement
+     * @param connection
+     */
+    public static void release(ResultSet resultSet, Statement statement, Connection connection) {
+        if(resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
