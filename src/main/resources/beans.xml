@@ -10,4 +10,12 @@
         <property name="username" value="root"></property>
         <property name="password" value="fullstack"></property>
     </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean id="studentDAO" class="com.imooc.dao.StudentDAOSpringJdbcImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>

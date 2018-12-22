@@ -28,7 +28,7 @@ public class StudentDAOImplTest {
         Student student = new Student();
 
         // 设置学生信息
-        student.setName("test");
+        student.setName("jdbc");
         student.setAge(30);
 
         // 存储

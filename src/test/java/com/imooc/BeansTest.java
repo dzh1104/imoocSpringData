@@ -10,7 +10,8 @@ import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
 
-public class DataSourceTest {
+// 对beans.xml中的配置进行测试
+public class BeansTest {
 
     // 使用spring开发，会存在一个ApplicationContext类型的对象，保存着上下文的信息
     private ApplicationContext ctx = null;
@@ -33,6 +34,7 @@ public class DataSourceTest {
     public void testDataSource() {
 
         System.out.println("testDataSource");
+        // 从spring容器中取得对象
         // getBean返回值是Object类型，强转成DataSource
         DataSource dataSource = (DataSource) ctx.getBean("dataSource");
         Assert.notNull(dataSource);
@@ -43,6 +45,8 @@ public class DataSourceTest {
     public void testJdbcTemplate() {
 
         System.out.println("testJdbcTemplate");
+        // 从spring容器中取得对象
+        // getBean返回值是Object类型，强转成JdbcTemplate
         JdbcTemplate jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
         Assert.notNull(jdbcTemplate);
     }
