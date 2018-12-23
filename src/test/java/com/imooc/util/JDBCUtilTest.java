@@ -1,4 +1,4 @@
-package com.imooc.utils;
+package com.imooc.util;
 
 import org.junit.Assert;
 import org.junit.Test;

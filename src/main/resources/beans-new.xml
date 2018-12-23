@@ -38,17 +38,20 @@
 
     </bean>
 
+    <!--配置注解-->
     <!--3 配置事务管理器-->
-    <!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">-->
-        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
-    <!--</bean>-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
 
-    <!--&lt;!&ndash;4 配置支持注解的事务&ndash;&gt;-->
-    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <!--4 配置支持注解的事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--&lt;!&ndash;5 配置spring data&ndash;&gt;-->
-    <!--<jpa:repositories base-package="com.imooc" entity-manager-factory-ref="entityManagerFactory"/>-->
+    <!--5 配置spring data-->
+    <!--spring data 扫描的包-->
+    <jpa:repositories base-package="com.imooc" entity-manager-factory-ref="entityManagerFactory"/>
 
-    <!--<context:component-scan base-package="com.imooc"/>-->
+    <!--spring 扫描的包-->
+    <context:component-scan base-package="com.imooc"/>
 
 </beans>

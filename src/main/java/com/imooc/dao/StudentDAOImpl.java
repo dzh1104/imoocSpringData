@@ -1,7 +1,7 @@
 package com.imooc.dao;
 
 import com.imooc.domain.Student;
-import com.imooc.utils.JDBCUtil;
+import com.imooc.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
