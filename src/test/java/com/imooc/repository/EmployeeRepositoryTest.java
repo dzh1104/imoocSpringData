@@ -8,7 +8,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 // import org.junit.jupiter.api.Test;
-
 public class EmployeeRepositoryTest {
 
     private ApplicationContext ctx = null;

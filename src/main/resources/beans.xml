@@ -37,3 +37,10 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 </beans>
+
+<!--
+    慕课网: https://www.imooc.com/video/3665
+    Bean容器初始化
+        基础: 两个包
+            - org
+-->
