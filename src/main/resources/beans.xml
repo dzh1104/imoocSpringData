@@ -10,6 +10,7 @@
 
     <!--加载外部资源properties文件-->
     <context:property-placeholder location="classpath:db.properties" />
+
     <!--
         使用这个需要添加以下:
             命名空间
