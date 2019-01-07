@@ -33,14 +33,14 @@ public class JDBCUtil {
         properties.load(inputstream);
 
         String url = properties.getProperty("jdbc.url");
-        String user = properties.getProperty("jdbc.user");
+        String user = properties.getProperty("jdbc.username");
         String password = properties.getProperty("jdbc.password");
         String driverClass = properties.getProperty("jdbc.driverClass");
-
-        // 本地固定写法
+        
+        // 本地固定写法: 硬编码形式不可取
         // String url = "jdbc:mysql://localhost:3306/spring_data?useSSL=false";
-        // String user = "root";
-        // String password = "Enuo1010";
+        // String username = "root";
+        // String password = "fullstack";
         // String driverClass = "com.mysql.cj.jdbc.Driver";
 
         Class.forName(driverClass);

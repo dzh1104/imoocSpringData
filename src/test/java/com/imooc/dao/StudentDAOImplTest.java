@@ -20,6 +20,9 @@ public class StudentDAOImplTest {
         for (Student student : students) {
             System.out.println("id: " + student.getId() + "name: " + student.getName() + "age: " + student.getAge());
         }
+        // students是个List 不是数组
+        // System.out.println(Arrays.toString(students));
+        System.out.println(students);
     }
 
     @Test
@@ -31,8 +34,8 @@ public class StudentDAOImplTest {
         Student student = new Student();
 
         // 设置学生信息
-        student.setName("jdbc");
-        student.setAge(30);
+        student.setName("new20190107");
+        student.setAge(40);
 
         // 存储
         studentDAO.save(student);

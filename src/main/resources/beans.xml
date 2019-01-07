@@ -9,26 +9,21 @@
 >
 
     <!--加载外部资源properties文件-->
-    <context:property-placeholder location="classpath:db.properties" />
 
-    <!--
-        使用这个需要添加以下:
-            命名空间
-            xmlns:context="http://www.springframework.org/schema/context"
-            命名空间xsd文件
-            xsi:schemaLocation="http://www.springframework.org/schema/context/spring-context.xsd"
-    -->
+    <!--方式一-->
+    <!--<context:property-placeholder location="classpath:db.properties" system-properties-mode="NEVER" />-->
 
-    <!--配置自动扫描的包: 需要加入aop对应的jar包-->
-    <context:component-scan base-package="com.imooc" />
+    <!--方式二-->
+    <bean id="config" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations">
+            <array>
+                <value>classpath:db.properties</value>
+            </array>
+        </property>
+    </bean>
 
     <!--配置数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />-->
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/spring_data?useSSL=false" />-->
-        <!--<property name="username" value="root" />-->
-        <!--<property name="password" value="fullstack" />-->
-
         <!--结合 context:property-placrholder 外部资源-->
         <property name="driverClassName" value="${jdbc.driverClass}" />
         <property name="url" value="${jdbc.url}" />

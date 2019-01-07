@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 
 // 使用注释 @Entity 创建实体类
-// 指明该类将映射到指定的数据表，Employee 类默认的数据表名为 employe
+// 指明该类将映射到指定的数据表，Employee 类默认的数据表名为 employee
 // 当实体类与映射的数据库表名不同名时需要使用 @Table 注解，该注解与 @Entity 注解并列使用，使用其 name 属性指明数据库的表名
 @Table(name = "employee")
 @Entity

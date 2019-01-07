@@ -45,8 +45,8 @@ public class StudentDAOSpringJdbcImplTest {
     @Test
     public void testSave() {
         Student student = new Student();
-        student.setName("spring-jdbc");
-        student.setAge(42);
+        student.setName("spring-jdbc-0107");
+        student.setAge(32);
 
         studentDAO.save(student);
     }
