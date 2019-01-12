@@ -22,8 +22,13 @@ import org.springframework.data.repository.Repository;
 
 /**
  * 1）Repository是一个空接口，标记接口，没有包含方法声明的接口
+ *      是spring data的核心接口
  *
  * 2）如果我们定义的接口EmployeeRepository extends Repository
+ *      继承该接口后，我们的接口就会被spring所管理
+ *      如果不继承该接口，运行测试用例时会报错！
+ *          错误信息：org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.imooc.repository.EmployeeRepository' available
+ *          因为没有被纳入spring容器
  *
  * 如果我们自己的接口没有extends Repository，运行时会报错：
  * org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springdata
@@ -34,11 +39,30 @@ import org.springframework.data.repository.Repository;
  * */
 
 /*
+* Repository的子接口
+*   CrudRepository: 继承Repository，实现了CRUD相关的方法
+*   PagingAndSortingRepository: 继承了CrudRepository，实现了分页排序相关的方法
+*   JpaRepository: 继承了PagingAndSortingRepository，实现JPA规范相关的方法
+* */
+
+/*
+* Repository中查询方法定义规则和使用
+*
+* */
+
+/*
 * 关于 spring data的博客:
 *   https://www.cnblogs.com/fzng/p/7253149.html
 *   https://www.cnblogs.com/simazilin/p/5645947.html
 * */
+
+/***
+ * domainClass  表示哪个实体类
+ * idClass 标识id
+ */
+// @RepositoryDefinition(domainClass = Employee.class, idClass = Integer.class)
 public interface EmployeeRepository extends Repository<Employee, Integer> {
+// public interface EmployeeRepository {
     // 方法名有一定的规则来书写的，才能工作
-    public Employee findByName(String name);
+    Employee findByName(String name);
 }

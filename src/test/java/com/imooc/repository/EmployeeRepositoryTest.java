@@ -18,7 +18,7 @@ public class EmployeeRepositoryTest {
     public void setup() {
 
         ctx = new ClassPathXmlApplicationContext("beans-new.xml");
-        // 从上下文中取出对象 从容器中取出对象
+        // 从上下文中取出对象 从容器中取出对象 接口取得对象
         employeeRepository = ctx.getBean(EmployeeRepository.class);
         System.out.println("setup");
     }
@@ -33,9 +33,9 @@ public class EmployeeRepositoryTest {
     @Test
     public void testFindByName() {
 
-        System.out.println(employeeRepository);
+        System.out.println(employeeRepository); // org.springframework.data.jpa.repository.support.SimpleJpaRepository@51ec2df1
         Employee employee = employeeRepository.findByName("zhangsan");
-        System.out.println("id:" + employee.getId() + " , name:" + employee.getName() + " ,age:" + employee.getAge());
+        System.out.println("employee: " + employee);
     }
 
 }

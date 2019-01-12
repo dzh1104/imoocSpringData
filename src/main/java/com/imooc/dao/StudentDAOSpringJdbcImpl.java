@@ -15,7 +15,7 @@ public class StudentDAOSpringJdbcImpl implements StudentDAO {
     private JdbcTemplate jdbcTemplate;
 
     public JdbcTemplate getJdbcTemplate() {
-
+    
         return jdbcTemplate;
     }
 
@@ -27,7 +27,7 @@ public class StudentDAOSpringJdbcImpl implements StudentDAO {
 
     @Override
     public List<Student> query() {
-
+        
         final List<Student> students = new ArrayList<Student>();
 
 
