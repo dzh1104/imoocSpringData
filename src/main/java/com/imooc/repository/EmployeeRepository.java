@@ -1,6 +1,7 @@
 package com.imooc.repository;
 
 import com.imooc.domain.Employee;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -47,7 +48,15 @@ import org.springframework.data.repository.Repository;
 
 /*
 * Repository中查询方法定义规则和使用
-*
+*   官网文档：https://docs.spring.io/spring-data/jpa/docs/2.1.3.RELEASE/reference/html/
+* */
+
+/*
+* @Query注解使用
+*   在Repository方法中使用，不需要遵循查询方法命名规则
+*   只需要将@Query定义在Repository中的方法之上即可
+*   支持命名参数及索引参数的使用
+*   支持本地查询
 * */
 
 /*
@@ -65,4 +74,7 @@ public interface EmployeeRepository extends Repository<Employee, Integer> {
 // public interface EmployeeRepository {
     // 方法名有一定的规则来书写的，才能工作
     Employee findByName(String name);
+    
+    @Query("select o from Employee o where id=(select max(id) from Employee t1)")
+    public Employee getEmployeeByMaxId();
 }
