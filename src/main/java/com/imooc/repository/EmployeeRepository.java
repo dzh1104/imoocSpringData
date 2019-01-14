@@ -1,8 +1,12 @@
 package com.imooc.repository;
 
 import com.imooc.domain.Employee;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * Repository 类，spring data核心类
@@ -57,6 +61,16 @@ import org.springframework.data.repository.Repository;
 *   只需要将@Query定义在Repository中的方法之上即可
 *   支持命名参数及索引参数的使用
 *   支持本地查询
+*
+*   对于按照方法命名规则来使用的话，有弊端：
+*    1）方法名会比较长： 约定大于配置
+*    2）对于一些复杂的查询，是很难实现
+    
+*    @Query
+
+*    事务在Spring data中的使用：
+*    1）事务一般是在Service层
+*    2）@Query、 @Modifying、@Transactional的综合使用
 * */
 
 /*
@@ -74,7 +88,39 @@ public interface EmployeeRepository extends Repository<Employee, Integer> {
 // public interface EmployeeRepository {
     // 方法名有一定的规则来书写的，才能工作
     Employee findByName(String name);
-    
-    @Query("select o from Employee o where id=(select max(id) from Employee t1)")
-    public Employee getEmployeeByMaxId();
+
+// where name like ?% and age <?
+public List<Employee> findByNameStartingWithAndAgeLessThan(String name, Integer age);
+
+// where name like %? and age <?
+public List<Employee> findByNameEndingWithAndAgeLessThan(String name, Integer age);
+
+// where name in (?,?....) or age <?
+public List<Employee> findByNameInOrAgeLessThan(List<String> names, Integer age);
+
+// where name in (?,?....) and age <?
+public List<Employee> findByNameInAndAgeLessThan(List<String> names, Integer age);
+
+@Query("select o from Employee o where id=(select max(id) from Employee t1)")
+public Employee getEmployeeByMaxId();
+
+@Query("select o from Employee o where o.name=?1 and o.age=?2")
+public List<Employee> queryParams1(String name, Integer age);
+
+@Query("select o from Employee o where o.name=:name and o.age=:age")
+public List<Employee> queryParams2(@Param("name") String name, @Param("age") Integer age);
+
+@Query("select o from Employee o where o.name like %?1%")
+public List<Employee> queryLike1(String name);
+
+@Query("select o from Employee o where o.name like %:name%")
+public List<Employee> queryLike2(@Param("name") String name);
+
+@Query(nativeQuery = true, value = "select count(1) from employee")
+public long getCount();
+
+@Modifying
+@Query("update Employee o set o.age = :age where o.id = :id")
+public void update(@Param("id") Integer id, @Param("age") Integer age);
+
 }
